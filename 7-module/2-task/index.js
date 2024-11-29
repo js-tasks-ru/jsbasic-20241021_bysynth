@@ -12,8 +12,6 @@ export default class Modal {
     this.#modalTitle = this.#modal.querySelector('.modal__title');
     this.#modalBody = this.#modal.querySelector('.modal__body');
     this.#modalCloseButton = this.#modal.querySelector('.modal__close');
-
-    this.#addEventListeners();
   }
 
   setTitle(title) {
@@ -27,11 +25,15 @@ export default class Modal {
   open() {
     document.body.append(this.#modal);
     document.body.classList.add('is-modal-open');
+
+    this.#modal.addEventListener('click', this.#closeModalOnClickHandler);
+    document.addEventListener('keydown', this.#closeModalOnKeydownHandler);
   }
 
   close() {
     this.#modal.remove();
     document.body.classList.remove('is-modal-open');
+
     document.removeEventListener('keydown', this.#closeModalOnKeydownHandler);
   }
 
@@ -56,17 +58,13 @@ export default class Modal {
     this.#modal = createElement(this.#template());
   }
 
-  #addEventListeners() {
-    this.#modal.addEventListener('click', (event) => {
-      if (event.target.closest('.modal__close')) {
-        this.close();
-      }
-    });
+  #closeModalOnClickHandler = (event) => {
+    if (event.target.closest('.modal__close')) {
+      this.close();
+    }
+  };
 
-    document.addEventListener('keydown', this.#closeModalOnKeydownHandler);
-  }
-
-  #closeModalOnKeydownHandler = event => {
+  #closeModalOnKeydownHandler = (event) => {
     if (event.code === 'Escape' && document.body.classList.contains('is-modal-open')) {
       this.close();
     }
