@@ -7,8 +7,8 @@
   <title>Бангкок Экспресс: Иконка корзины</title>
 
   <link rel="stylesheet" href="./index.css" />
-  <link rel="stylesheet" href="../../../6-module/2-task/index.css">
-  <link rel="stylesheet" href="/assets/styles/common.css" />
+  <link rel="stylesheet" href="../../6-module/2-task/index.css">
+  <link rel="stylesheet" href="../../assets/styles/common.css" />
 </head>
 
 <style>
@@ -61,17 +61,17 @@
     container.append(productGrid.elem);
 
     let noNutsControl = document.querySelector('[data-no-nuts]');
-    noNutsControl.addEventListener('change', () => {
+    noNutsControl.addEventListener('change', (event) => {
       productGrid.updateFilter({ noNuts: event.target.checked });
     });
 
     let vegetarianOnlyControl = document.querySelector('[data-vegetarian-only]');
-    vegetarianOnlyControl.addEventListener('change', () => {
+    vegetarianOnlyControl.addEventListener('change', (event) => {
       productGrid.updateFilter({ vegeterianOnly: event.target.checked });
     });
 
     let maxSpicinessControl = document.querySelector('[data-max-spiciness]');
-    maxSpicinessControl.addEventListener('change', () => {
+    maxSpicinessControl.addEventListener('change', (event) => {
       if (event.target.checked) {
         productGrid.updateFilter({ maxSpiciness: 2 });
       } else {
@@ -80,7 +80,7 @@
     });
 
     let categoryControl = document.querySelector('[data-category]');
-    categoryControl.addEventListener('change', () => {
+    categoryControl.addEventListener('change', (event) => {
       if (event.target.checked) {
         productGrid.updateFilter({ category: 'soups' });
       } else {
