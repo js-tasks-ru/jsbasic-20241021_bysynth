@@ -170,6 +170,7 @@ export default class Cart {
 
       if (response.ok) {
         this.cartItems = [];
+        this.cartIcon.update(this);
 
         this.modal.setTitle('Success!');
         this.modalBody.innerHTML = `
