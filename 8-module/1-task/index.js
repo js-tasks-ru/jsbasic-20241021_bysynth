@@ -36,11 +36,11 @@ export default class CartIcon {
   }
 
   addEventListeners() {
-    document.addEventListener('scroll', () => this.updatePosition());
-    window.addEventListener('resize', () => this.updatePosition());
+    document.addEventListener('scroll', this.updatePosition);
+    window.addEventListener('resize', this.updatePosition);
   }
 
-  updatePosition() {
+  updatePosition = () => {
     if (!this.#initialTopCoord) {
       this.#initialTopCoord = this.elem.getBoundingClientRect().top + window.scrollY;
     }
@@ -50,7 +50,7 @@ export default class CartIcon {
     } else {
       this.#unpinCart();
     }
-  }
+  };
 
   #isCartVisible() {
     return this.elem.offsetWidth > 0;
@@ -74,7 +74,6 @@ export default class CartIcon {
       position: 'fixed',
       top: '50px',
       left: leftIndent,
-      right: '10px',
       zIndex: 1e3
     });
   }
